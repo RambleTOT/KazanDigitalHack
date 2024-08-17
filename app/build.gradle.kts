@@ -45,4 +45,20 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+
+    // Http requests
+    implementation(libs.retrofit)
+    implementation(libs.adapter.rxjava2)
+    implementation(libs.converter.gson)
+    implementation(libs.converter.scalars)
+    implementation(libs.logging.interceptor)
+
+    // Yandex Map
+    implementation(libs.maps.mobile)
+
+    implementation(libs.play.services.location)
+
+    // Picasso
+    implementation(libs.picasso)
 }
