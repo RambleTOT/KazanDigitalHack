@@ -12,7 +12,7 @@ import com.yandex.mapkit.MapKitFactory
 class MainActivity : AppCompatActivity() {
 
     companion object {
-        const val MAPKIT_API_KEY = "a527d12d-2fd5-4eaf-9b11-4a301efad482"
+        const val MAPKIT_API_KEY = BuildConfig.MAP_KEY
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
