@@ -1,13 +1,14 @@
-package ramble.sokol.residentardoftatarstan
+package ramble.sokol.residentardoftatarstan.presentation.activity
 
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.WindowManager
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.fragment.app.Fragment
 import com.yandex.mapkit.MapKitFactory
+import ramble.sokol.residentardoftatarstan.BuildConfig
+import ramble.sokol.residentardoftatarstan.R
+import ramble.sokol.residentardoftatarstan.presentation.fragments.SplashScreenFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,6 +24,17 @@ class MainActivity : AppCompatActivity() {
         MapKitFactory.initialize(this)
 
         setContentView(R.layout.activity_main)
+
+        val splashScreenFragment = SplashScreenFragment()
+        val fragment : Fragment? =
+
+            supportFragmentManager.findFragmentByTag(SplashScreenFragment::class.java.simpleName)
+
+        if (fragment !is SplashScreenFragment){
+            supportFragmentManager.beginTransaction()
+                .add(R.id.layout_fragment, splashScreenFragment, SplashScreenFragment::class.java.simpleName)
+                .commit()
+        }
 
     }
 
