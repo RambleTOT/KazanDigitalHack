@@ -12,5 +12,10 @@
     <string name="text_news">Новости</string>
     <string name="test">Тест</string>
     <string name="test_description">Пройдите входной тест</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="pay">Оплата</string>
+    <string name="subject_payment">Предмет оплаты</string>
+    <string name="description">Описание</string>
+    <string name="promocode">Промокод</string>
+    <string name="promocode_hint_edit_text">Введите промокод при наличии</string>
+    <string name="pay_online">Оплатить онлайн</string>
 </resources>

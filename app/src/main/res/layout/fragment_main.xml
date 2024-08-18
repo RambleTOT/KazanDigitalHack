@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.fragments.MainFragment"
-    android:background="@color/text_background"
-    android:layout_marginHorizontal="16dp">
+    android:background="@color/text_background">
 
     <TextView
         android:id="@+id/text_title_main"
@@ -16,12 +15,13 @@
         android:gravity="center"
         android:lineSpacingExtra="5dp"
         android:text="@string/text_main"
-        android:textColor="@color/color_text_title"
+        android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="16dp"/>
 
     <ImageView
         android:id="@+id/imageView"
@@ -30,6 +30,7 @@
         android:layout_marginTop="40dp"
         android:adjustViewBounds="true"
         android:src="@drawable/image_card"
+        android:layout_marginHorizontal="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_title_main" />
@@ -43,6 +44,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
         android:layout_marginTop="24dp"
+        android:layout_marginHorizontal="16dp"
         android:padding="12dp">
 
         <ImageView
@@ -63,7 +65,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
-                android:textColor="@color/color_text_title"
+                android:textColor="@color/black"
                 android:text="@string/test"
                 android:fontFamily="@font/mont_semibold"
                 android:lineSpacingExtra="5dp"
@@ -74,7 +76,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
                 android:layout_marginTop="4dp"
-                android:textColor="@color/color_text_description"
+                android:textColor="@color/color_text_description_83"
                 android:text="@string/test_description"
                 android:fontFamily="@font/mont_regular"
                 android:lineSpacingExtra="5dp"

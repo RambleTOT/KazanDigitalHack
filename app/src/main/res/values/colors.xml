@@ -8,4 +8,6 @@
     <color name="text_color_edit_text">#252525</color>
     <color name="text_background">#EFEFEF</color>
     <color name="navbar_false">#C6C6C6</color>
+    <color name="color_text_description_83">#838383</color>
+    <color name="color_text_description_pay">#979797</color>
 </resources>
