@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navbar_main"
+        android:title="@string/text_main"
+        android:icon="@drawable/icon_main"
+        />
+
+    <item
+        android:id="@+id/navbar_payment"
+        android:title="@string/text_payment"
+        android:icon="@drawable/icon_payment"
+        />
+
+    <item
+        android:title="@string/text_services"
+        android:id="@+id/navbar_services"
+        android:icon="@drawable/icon_services"
+        />
+
+    <item
+        android:title="@string/text_promotions"
+        android:id="@+id/navbar_promotions"
+        android:icon="@drawable/icon_promotions"
+        />
+
+    <item
+        android:title="@string/text_news"
+        android:id="@+id/navbar_news"
+        android:icon="@drawable/icon_news"
+        />
+
+</menu>

@@ -5,5 +5,10 @@
     <string name="email">Почта</string>
     <string name="password">Пароль</string>
     <string name="to_login">Войти</string>
+    <string name="text_main">Главная</string>
+    <string name="text_payment">Платежи</string>
+    <string name="text_services">Сервисы</string>
+    <string name="text_promotions">Акции</string>
+    <string name="text_news">Новости</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
