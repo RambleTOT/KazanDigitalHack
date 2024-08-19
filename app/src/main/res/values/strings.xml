@@ -18,4 +18,12 @@
     <string name="promocode">Промокод</string>
     <string name="promocode_hint_edit_text">Введите промокод при наличии</string>
     <string name="pay_online">Оплатить онлайн</string>
+    <string name="afisha">Афиша</string>
+    <string name="afisha_description">Мероприятия Татарстана</string>
+    <string name="section">Секции</string>
+    <string name="section_description">Секции для всех жителей Республики</string>
+    <string name="map">Карта</string>
+    <string name="map_description">Карта с нужными вам местами</string>
+    <string name="routes">Маршруты</string>
+    <string name="routes_description">Популярные маршруты</string>
 </resources>
