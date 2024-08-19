@@ -26,4 +26,11 @@
     <string name="map_description">Карта с нужными вам местами</string>
     <string name="routes">Маршруты</string>
     <string name="routes_description">Популярные маршруты</string>
+    <string name="back_to_main">Вернуться на главную</string>
+    <string name="end_test_title">Вы прошли входной тест!</string>
+    <string name="end_test_description">Теперь мы знаем что вам интересно</string>
+    <string name="test_text">Тест</string>
+    <string name="continue_text">Продолжить</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

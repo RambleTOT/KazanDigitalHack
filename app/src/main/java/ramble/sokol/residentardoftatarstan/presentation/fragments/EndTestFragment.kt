@@ -1,23 +1,24 @@
 package ramble.sokol.residentardoftatarstan.presentation.fragments
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import ramble.sokol.residentardoftatarstan.R
-import ramble.sokol.residentardoftatarstan.databinding.FragmentMainBinding
+import ramble.sokol.residentardoftatarstan.databinding.FragmentEndTestBinding
+import ramble.sokol.residentardoftatarstan.databinding.FragmentOnBoardingBinding
 
-class MainFragment : Fragment() {
+class EndTestFragment : Fragment() {
 
-    private var binding: FragmentMainBinding? = null
+    private var binding: FragmentEndTestBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentMainBinding.inflate(inflater, container, false)
+        binding = FragmentEndTestBinding.inflate(inflater, container, false)
         val view = binding!!.root
         return view
     }
@@ -28,9 +29,9 @@ class MainFragment : Fragment() {
     }
 
     private fun init(){
-        binding!!.onboardingButton.setOnClickListener {
+        binding!!.buttonToMainTest.setOnClickListener {
             val transaction = requireActivity().supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.layout_fragment, OnBoardingFragment())
+            transaction.replace(R.id.layout_fragment, BottomNavigationFragment())
             transaction.disallowAddToBackStack()
             transaction.commit()
         }

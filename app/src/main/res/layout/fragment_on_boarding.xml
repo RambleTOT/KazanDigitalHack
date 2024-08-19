@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.fragments.OnBoardingFragment"
+    android:background="@color/text_background">
+
+    <TextView
+        android:id="@+id/text_title_test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/mont_bold"
+        android:gravity="center"
+        android:lineSpacingExtra="5dp"
+        android:text="@string/test_text"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginHorizontal="16dp"/>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="11dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_title_test">
+
+        <View
+            android:id="@+id/view1"
+            android:layout_width="6dp"
+            android:layout_height="6dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/background_test_progress_true" />
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="6dp"
+            android:layout_height="6dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/background_test_progress" />
+
+        <View
+            android:id="@+id/view3"
+            android:layout_width="6dp"
+            android:layout_height="6dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/background_test_progress" />
+
+        <View
+            android:id="@+id/view4"
+            android:layout_width="6dp"
+            android:layout_height="6dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/background_test_progress" />
+
+        <View
+            android:id="@+id/view5"
+            android:layout_width="6dp"
+            android:layout_height="6dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/background_test_progress" />
+
+        <View
+            android:id="@+id/view6"
+            android:layout_width="6dp"
+            android:layout_height="6dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/background_test_progress" />
+
+        <View
+            android:id="@+id/view7"
+            android:layout_width="6dp"
+            android:layout_height="6dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/background_test_progress" />
+
+        <View
+            android:id="@+id/view8"
+            android:layout_width="6dp"
+            android:layout_height="6dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/background_test_progress" />
+
+        <View
+            android:id="@+id/view9"
+            android:layout_width="6dp"
+            android:layout_height="6dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/background_test_progress" />
+
+        <View
+            android:id="@+id/view10"
+            android:layout_width="6dp"
+            android:layout_height="6dp"
+            android:background="@drawable/background_test_progress" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="38dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+        <TextView
+            android:id="@+id/text_number_questions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/mont_bold"
+            android:gravity="center"
+            android:lineSpacingExtra="5dp"
+            android:text="1 из 10 вопросов"
+            android:textColor="@color/color_text_title_questions"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/questions_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/mont_bold"
+            android:gravity="center"
+            android:lineSpacingExtra="5dp"
+            android:text="GJKHHHGJK"
+            android:textColor="@color/black"
+            android:textSize="24sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <LinearLayout
+                android:id="@+id/card_answer_1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/questions_background"
+                android:orientation="vertical"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="24dp">
+
+                <TextView
+                    android:id="@+id/text_card_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/mont_semibold"
+                    android:gravity="center"
+                    android:lineSpacingExtra="5dp"
+                    android:text="@string/map"
+                    android:textColor="@color/text_questions"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/card_answer_2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/questions_background"
+                android:orientation="vertical"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="24dp">
+
+                <TextView
+                    android:id="@+id/text_card_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/mont_semibold"
+                    android:gravity="center"
+                    android:lineSpacingExtra="5dp"
+                    android:text="@string/map"
+                    android:textColor="@color/text_questions"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <LinearLayout
+                android:id="@+id/card_answer_3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/questions_background"
+                android:orientation="vertical"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="24dp">
+
+                <TextView
+                    android:id="@+id/text_card_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/mont_semibold"
+                    android:gravity="center"
+                    android:lineSpacingExtra="5dp"
+                    android:text="@string/map"
+                    android:textColor="@color/text_questions"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/card_answer_4"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/questions_background"
+                android:orientation="vertical"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="24dp">
+
+                <TextView
+                    android:id="@+id/text_card_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/mont_semibold"
+                    android:gravity="center"
+                    android:lineSpacingExtra="5dp"
+                    android:text="@string/map"
+                    android:textColor="@color/text_questions"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/next_questions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/color_main"
+        android:fontFamily="@font/mont_semibold"
+        android:includeFontPadding="false"
+        android:lineSpacingExtra="4sp"
+        android:paddingHorizontal="31dp"
+        android:paddingVertical="25dp"
+        android:text="@string/continue_text"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:cornerRadius="50dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

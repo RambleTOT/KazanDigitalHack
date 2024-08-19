@@ -10,4 +10,8 @@
     <color name="navbar_false">#C6C6C6</color>
     <color name="color_text_description_83">#838383</color>
     <color name="color_text_description_pay">#979797</color>
+    <color name="color_text_title_questions">#252525</color>
+    <color name="background_questions">#F6F6F6</color>
+    <color name="background_questions_true">#CDE1CE</color>
+    <color name="text_questions">#1C1C1E</color>
 </resources>

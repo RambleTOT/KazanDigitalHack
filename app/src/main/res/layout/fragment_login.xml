@@ -68,7 +68,7 @@
                 android:singleLine="true"
                 android:fontFamily="@font/mont_regular"
                 android:textCursorDrawable="@drawable/cursor_style_edit_text"
-                android:textColor="@color/text_color_edit_text"
+                android:textColor="@color/black"
                 android:inputType="textEmailAddress"
                 />
 
@@ -96,7 +96,7 @@
                 android:singleLine="true"
                 android:fontFamily="@font/mont_regular"
                 android:textCursorDrawable="@drawable/cursor_style_edit_text"
-                android:textColor="@color/text_color_edit_text"
+                android:textColor="@color/black"
                 android:inputType="textPassword"
                 />
 
