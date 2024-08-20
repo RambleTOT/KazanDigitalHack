@@ -26,7 +26,10 @@ import com.yandex.mapkit.map.MapObjectCollection
 import com.yandex.mapkit.map.PlacemarkMapObject
 import com.yandex.runtime.image.ImageProvider
 import ramble.sokol.residentardoftatarstan.R
+import ramble.sokol.residentardoftatarstan.data.model.GetGroundsResponse
 import ramble.sokol.residentardoftatarstan.databinding.FragmentMapBinding
+import ramble.sokol.residentardoftatarstan.presentation.adapters.BottomSheetGround
+import ramble.sokol.residentardoftatarstan.presentation.managers.RetrofitHelper
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -41,6 +44,7 @@ class MapFragment : Fragment() {
     private lateinit var startLocation: Point
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private lateinit var listPoint: List<Point>
+    private lateinit var listData: List<GetGroundsResponse>
 
     companion object {
         private const val PERMISSION_REQUEST_ACCESS_LOCATION = 100
@@ -70,16 +74,16 @@ class MapFragment : Fragment() {
         val marker = createBitmapFromVector(R.drawable.icon_map)
         mapObjectCollection = binding!!.mapView.map.mapObjects
 
-//        for (i in listData){
-//            val p = Point(i.latitude!!.toDouble(), i.longitude!!.toDouble())
-//            placeMarkMapObject = mapObjectCollection.addPlacemark(p, ImageProvider.fromBitmap(marker))
-//            Log.d("MyLog", "listData $i")
-//            placeMarkMapObject.addTapListener { _, _ ->
-//                Log.d("MyLog", "click $i")
-//                showBottomSheet(i)
-//                true
-//            }
-//        }
+        for (i in listData){
+            val p = Point(i.latitude!!.toDouble(), i.longitude!!.toDouble())
+            placeMarkMapObject = mapObjectCollection.addPlacemark(p, ImageProvider.fromBitmap(marker))
+            Log.d("MyLog", "listData $i")
+            placeMarkMapObject.addTapListener { _, _ ->
+                Log.d("MyLog", "click $i")
+                showBottomSheet(i)
+                true
+            }
+        }
     }
 
     private fun moveToStartLocation() {
@@ -102,13 +106,13 @@ class MapFragment : Fragment() {
         return bitmap
     }
 
-//    private fun showBottomSheet(i: GetGroundsResponse){
-//        val bottomSheet = BottomSheetGround(i)
-//        val fragmentManager = (activity as FragmentActivity).supportFragmentManager
-//        fragmentManager.let {
-//            bottomSheet.show(it, BottomSheetGround.TAG)
-//        }
-//    }
+    private fun showBottomSheet(i: GetGroundsResponse){
+        val bottomSheet = BottomSheetGround(i)
+        val fragmentManager = (activity as FragmentActivity).supportFragmentManager
+        fragmentManager.let {
+            bottomSheet.show(it, BottomSheetGround.TAG)
+        }
+    }
 
     private fun getMyLocation(){
         if (checkPermissions()){
@@ -129,7 +133,7 @@ class MapFragment : Fragment() {
                 //startLocation = Point(location!!.latitude, location!!.longitude, )
                 startLocation = Point(55.780213, 49.133444)
                 moveToStartLocation()
-                //getGrounds()
+                getGrounds()
             }
         }else{
             requestPermission()
@@ -180,28 +184,29 @@ class MapFragment : Fragment() {
         binding!!.mapView.onStop()
     }
 
-//    private fun getGrounds(){
-//        RetrofitHelper().getApi().getGrounds().enqueue(object :
-//            Callback<List<GetGroundsResponse>> {
-//
-//            override fun onResponse(
-//                call: Call<List<GetGroundsResponse>>,
-//                response: Response<List<GetGroundsResponse>>
-//            ) {
-//                if (response.isSuccessful){
-//                    listData = response.body()!!
-//                    setMarkerInStartLocation()
-//                }
-//                Log.d("MyLog", response.toString())
-//            }
-//
-//            override fun onFailure(call: Call<List<GetGroundsResponse>>, t: Throwable) {
-//                Log.d("MyLog", t.message.toString())
-//                Toast.makeText(activity, "Возникла ошибка, проверьте подключение", Toast.LENGTH_SHORT).show()
-//            }
-//
-//        })
-//    }
+    private fun getGrounds(){
+        RetrofitHelper().getApi().getGrounds().enqueue(object :
+            Callback<List<GetGroundsResponse>> {
+
+            override fun onResponse(
+                call: Call<List<GetGroundsResponse>>,
+                response: Response<List<GetGroundsResponse>>
+            ) {
+                if (response.isSuccessful){
+                    listData = response.body()!!
+                    Log.d("MyLog", listData.toString())
+                    setMarkerInStartLocation()
+                }
+                Log.d("MyLog", response.toString())
+            }
+
+            override fun onFailure(call: Call<List<GetGroundsResponse>>, t: Throwable) {
+                Log.d("MyLog", t.message.toString())
+                Toast.makeText(activity, "Возникла ошибка, проверьте подключение", Toast.LENGTH_SHORT).show()
+            }
+
+        })
+    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

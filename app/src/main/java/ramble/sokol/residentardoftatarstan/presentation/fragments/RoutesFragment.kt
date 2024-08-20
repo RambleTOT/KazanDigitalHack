@@ -1,10 +1,11 @@
-package ramble.sokol.residentardoftatarstan
+package ramble.sokol.residentardoftatarstan.presentation.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import ramble.sokol.residentardoftatarstan.R
 
 class RoutesFragment : Fragment() {
 

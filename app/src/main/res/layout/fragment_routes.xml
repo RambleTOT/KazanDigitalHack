@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RoutesFragment"
+    tools:context=".presentation.fragments.RoutesFragment"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/text_background">
 
