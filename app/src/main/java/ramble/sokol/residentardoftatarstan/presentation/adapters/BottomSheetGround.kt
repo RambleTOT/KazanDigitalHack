@@ -7,11 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.transition.Visibility
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.yandex.mapkit.geometry.Point
+import ramble.sokol.residentardoftatarstan.CreateRoutesToPointFragment
 import ramble.sokol.residentardoftatarstan.R
 import ramble.sokol.residentardoftatarstan.data.model.GetGroundsResponse
 import ramble.sokol.residentardoftatarstan.databinding.BottomSheetGroundBinding
 import ramble.sokol.residentardoftatarstan.presentation.fragments.BottomNavigationFragment
 import ramble.sokol.residentardoftatarstan.presentation.fragments.MainFragment
+import ramble.sokol.residentardoftatarstan.presentation.fragments.MapFragment
 import ramble.sokol.residentardoftatarstan.presentation.fragments.PayFragment
 
 class BottomSheetGround(val i: GetGroundsResponse) : BottomSheetDialogFragment() {
@@ -40,8 +43,16 @@ class BottomSheetGround(val i: GetGroundsResponse) : BottomSheetDialogFragment()
         if (i.price == "0") binding!!.buttonBuyOrGround.visibility =  View.GONE
         binding!!.dateAddressGround.text = "${i.timetable} · ${i.address}"
         binding!!.buttonBuyOrGround.setOnClickListener {
+            onStop()
             val transaction = requireActivity().supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.layout_fragment, PayFragment(i.price.toString()))
+            transaction.replace(R.id.layout_fragment, PayFragment(MapFragment(),i.price.toString()))
+            transaction.disallowAddToBackStack()
+            transaction.commit()
+        }
+        binding!!.buttonCreateRoutes.setOnClickListener {
+            onStop()
+            val transaction = requireActivity().supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.layout_fragment, CreateRoutesToPointFragment(Point(i.latitude!!.toDouble(), i.longitude!!.toDouble()),MapFragment()))
             transaction.disallowAddToBackStack()
             transaction.commit()
         }

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import ramble.sokol.residentardoftatarstan.AfishaFragment
 import ramble.sokol.residentardoftatarstan.R
 import ramble.sokol.residentardoftatarstan.databinding.FragmentMapBinding
 import ramble.sokol.residentardoftatarstan.databinding.FragmentServicesBinding
@@ -33,6 +34,13 @@ class ServicesFragment : Fragment() {
         binding!!.cardMap.setOnClickListener {
             val transaction = requireActivity().supportFragmentManager.beginTransaction()
             transaction.replace(R.id.layout_fragment, MapFragment())
+            transaction.disallowAddToBackStack()
+            transaction.commit()
+        }
+
+        binding!!.cardAfisha.setOnClickListener {
+            val transaction = requireActivity().supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.layout_fragment, AfishaFragment())
             transaction.disallowAddToBackStack()
             transaction.commit()
         }

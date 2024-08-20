@@ -1,12 +1,9 @@
-package ramble.sokol.residentardoftatarstan.presentation.fragments
+package ramble.sokol.residentardoftatarstan
 
 import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.graphics.Canvas
-import android.graphics.drawable.BitmapDrawable
-import android.graphics.drawable.Drawable
+import android.graphics.Color
 import android.location.Location
 import android.os.Bundle
 import android.util.Log
@@ -14,40 +11,36 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import androidx.fragment.app.FragmentActivity
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import com.yandex.mapkit.MapKitFactory
+import com.yandex.mapkit.directions.DirectionsFactory
+import com.yandex.mapkit.directions.driving.DrivingOptions
+import com.yandex.mapkit.directions.driving.VehicleOptions
 import com.yandex.mapkit.geometry.Point
+import com.yandex.mapkit.geometry.Polyline
 import com.yandex.mapkit.location.LocationManager
 import com.yandex.mapkit.map.CameraPosition
 import com.yandex.mapkit.map.MapObjectCollection
 import com.yandex.mapkit.map.PlacemarkMapObject
-import com.yandex.runtime.image.ImageProvider
-import ramble.sokol.residentardoftatarstan.R
-import ramble.sokol.residentardoftatarstan.data.model.GetGroundsResponse
+import com.yandex.mapkit.map.PolylineMapObject
+import ramble.sokol.residentardoftatarstan.databinding.FragmentCreateRoutesToPointBinding
 import ramble.sokol.residentardoftatarstan.databinding.FragmentMapBinding
-import ramble.sokol.residentardoftatarstan.presentation.adapters.BottomSheetGround
-import ramble.sokol.residentardoftatarstan.presentation.managers.RetrofitHelper
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
-class MapFragment : Fragment() {
+class CreateRoutesToPointFragment(
+    val end: Point,
+    val fragment: Fragment
+) : Fragment() {
 
-    private var binding: FragmentMapBinding? = null
-    private lateinit var mapObjectCollection: MapObjectCollection
-    private lateinit var placeMarkMapObject: PlacemarkMapObject
+    private var binding: FragmentCreateRoutesToPointBinding? = null
     private var zoomValue: Float = 15.5f
     private lateinit var locationManager: LocationManager
     private lateinit var startLocation: Point
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private lateinit var listPoint: List<Point>
-    private var placemark: PlacemarkMapObject? = null
-    private lateinit var listData: List<GetGroundsResponse>
+
 
     companion object {
         private const val PERMISSION_REQUEST_ACCESS_LOCATION = 100
@@ -58,7 +51,7 @@ class MapFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentMapBinding.inflate(inflater, container, false)
+        binding = FragmentCreateRoutesToPointBinding.inflate(inflater, container, false)
         val view = binding!!.root
         return view
     }
@@ -73,48 +66,22 @@ class MapFragment : Fragment() {
         fusedLocationProviderClient= LocationServices.getFusedLocationProviderClient(requireActivity())
     }
 
-    private fun setMarkerInStartLocation() {
-        val marker = createBitmapFromVector(R.drawable.icon_map)
-        mapObjectCollection = binding!!.mapView.map.mapObjects
-
-        for (i in listData){
-            val p = Point(i.latitude!!.toDouble(), i.longitude!!.toDouble())
-            placeMarkMapObject = mapObjectCollection.addPlacemark(p, ImageProvider.fromBitmap(marker))
-            Log.d("MyLog", "listData $i")
-            placeMarkMapObject.addTapListener { _, _ ->
-                Log.d("MyLog", "click $i")
-                showBottomSheet(i)
-                true
-            }
-        }
-    }
-
     private fun moveToStartLocation() {
         Log.d("MyLog", "location")
         binding!!.mapView.map.move(
             CameraPosition(startLocation, zoomValue, 0.0f, 0.0f)
         )
+        drawRoute(startLocation, end)
     }
 
-    private fun createBitmapFromVector(art: Int): Bitmap? {
-        val drawable = ContextCompat.getDrawable(requireActivity(), art) ?: return null
-        val bitmap = Bitmap.createBitmap(
-            drawable.intrinsicWidth,
-            drawable.intrinsicHeight,
-            Bitmap.Config.ARGB_8888
-        ) ?: return null
-        val canvas = Canvas(bitmap)
-        drawable.setBounds(0, 0, canvas.width, canvas.height)
-        drawable.draw(canvas)
-        return bitmap
-    }
+    private fun drawRoute(startPoint: Point, endPoint: Point) {
+        val mapObjects: MapObjectCollection = binding!!.mapView.map.mapObjects.addCollection()
 
-    private fun showBottomSheet(i: GetGroundsResponse){
-        val bottomSheet = BottomSheetGround(i)
-        val fragmentManager = (activity as FragmentActivity).supportFragmentManager
-        fragmentManager.let {
-            bottomSheet.show(it, BottomSheetGround.TAG)
-        }
+        // Создаем список точек для линии
+        val points = listOf(startPoint, endPoint)
+
+        // Добавляем полилинию на карту
+        mapObjects.addPolyline(Polyline(points))
     }
 
     private fun getMyLocation(){
@@ -135,28 +102,13 @@ class MapFragment : Fragment() {
                 val location: Location? = task.result
                 //startLocation = Point(location!!.latitude, location!!.longitude, )
                 startLocation = Point(55.780213, 49.133444)
-                addPlacemark(startLocation)
-
                 moveToStartLocation()
-                getGrounds()
             }
         }else{
             requestPermission()
         }
     }
 
-    private fun addPlacemark(location: Point) {
-        // Загрузите изображение из ресурсов
-        val drawable: Drawable? = ContextCompat.getDrawable(requireActivity(), R.drawable.current_location)
-        val bitmap = (drawable as BitmapDrawable).bitmap
-
-        // Создайте placemark с пользовательским значком
-        if (placemark == null) {
-            placemark = binding!!.mapView.map.mapObjects.addPlacemark(location, ImageProvider.fromBitmap(bitmap))
-        } else {
-            placemark!!.geometry = location
-        }
-    }
 
     private fun requestPermission(){
         ActivityCompat.requestPermissions(
@@ -201,37 +153,13 @@ class MapFragment : Fragment() {
         binding!!.mapView.onStop()
     }
 
-    private fun getGrounds(){
-        RetrofitHelper().getApi().getGrounds().enqueue(object :
-            Callback<List<GetGroundsResponse>> {
-
-            override fun onResponse(
-                call: Call<List<GetGroundsResponse>>,
-                response: Response<List<GetGroundsResponse>>
-            ) {
-                if (response.isSuccessful){
-                    listData = response.body()!!
-                    Log.d("MyLog", listData.toString())
-                    setMarkerInStartLocation()
-                }
-                Log.d("MyLog", response.toString())
-            }
-
-            override fun onFailure(call: Call<List<GetGroundsResponse>>, t: Throwable) {
-                Log.d("MyLog", t.message.toString())
-                Toast.makeText(activity, "Возникла ошибка, проверьте подключение", Toast.LENGTH_SHORT).show()
-            }
-
-        })
-    }
-
     override fun onAttach(context: Context) {
         super.onAttach(context)
         val callback: OnBackPressedCallback = object :
             OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 val transaction = requireActivity().supportFragmentManager.beginTransaction()
-                transaction.replace(R.id.layout_fragment, BottomNavigationFragment(ServicesFragment()))
+                transaction.replace(R.id.layout_fragment, fragment)
                 transaction.disallowAddToBackStack()
                 transaction.commit()
             }
