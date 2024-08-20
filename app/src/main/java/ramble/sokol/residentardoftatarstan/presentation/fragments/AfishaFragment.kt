@@ -1,4 +1,4 @@
-package ramble.sokol.residentardoftatarstan
+package ramble.sokol.residentardoftatarstan.presentation.fragments
 
 import android.content.Context
 import android.os.Bundle
@@ -7,17 +7,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import ramble.sokol.residentardoftatarstan.R
 import ramble.sokol.residentardoftatarstan.data.model.GetEventsResponse
+import ramble.sokol.residentardoftatarstan.data.model.GetGroundsResponse
 import ramble.sokol.residentardoftatarstan.databinding.FragmentAfishaBinding
-import ramble.sokol.residentardoftatarstan.databinding.FragmentPayBinding
+import ramble.sokol.residentardoftatarstan.presentation.adapters.BottomSheetAfisha
+import ramble.sokol.residentardoftatarstan.presentation.adapters.BottomSheetGround
 import ramble.sokol.residentardoftatarstan.presentation.adapters.EventsAdapter
-import ramble.sokol.residentardoftatarstan.presentation.fragments.BottomNavigationFragment
-import ramble.sokol.residentardoftatarstan.presentation.fragments.ServicesFragment
 import ramble.sokol.residentardoftatarstan.presentation.managers.RetrofitHelper
 import retrofit2.Call
 import retrofit2.Callback
@@ -72,6 +72,9 @@ class AfishaFragment : Fragment() {
                     eventsList = response.body()!!
                     binding!!.recyclerViewRecommendEvent.apply {
                         adapterEvents = EventsAdapter(eventsList)
+                        adapterEvents.onItemClick = {
+                            showBottomSheet(it)
+                        }
                         adapter = adapterEvents
                         layoutManager =
                             LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
@@ -107,6 +110,9 @@ class AfishaFragment : Fragment() {
                             sportList = response.body()!!
                             binding!!.recyclerSportEvent.apply {
                                 adapterEvents = EventsAdapter(sportList)
+                                adapterEvents.onItemClick = {
+                                    showBottomSheet(it)
+                                }
                                 adapter = adapterEvents
                                 layoutManager =
                                     LinearLayoutManager(
@@ -147,6 +153,9 @@ class AfishaFragment : Fragment() {
                             cultureList = response.body()!!
                             binding!!.recyclerCultureEvent.apply {
                                 adapterEvents = EventsAdapter(cultureList)
+                                adapterEvents.onItemClick = {
+                                    showBottomSheet(it)
+                                }
                                 adapter = adapterEvents
                                 layoutManager =
                                     LinearLayoutManager(
@@ -187,6 +196,9 @@ class AfishaFragment : Fragment() {
                             cinemaList = response.body()!!
                             binding!!.recyclerCinemaEvent.apply {
                                 adapterEvents = EventsAdapter(cinemaList)
+                                adapterEvents.onItemClick = {
+                                    showBottomSheet(it)
+                                }
                                 adapter = adapterEvents
                                 layoutManager =
                                     LinearLayoutManager(
@@ -227,6 +239,9 @@ class AfishaFragment : Fragment() {
                             concertList = response.body()!!
                             binding!!.recyclerConcertEvent.apply {
                                 adapterEvents = EventsAdapter(concertList)
+                                adapterEvents.onItemClick = {
+                                    showBottomSheet(it)
+                                }
                                 adapter = adapterEvents
                                 layoutManager =
                                     LinearLayoutManager(
@@ -267,6 +282,9 @@ class AfishaFragment : Fragment() {
                             lectureList = response.body()!!
                             binding!!.recyclerLectureEvent.apply {
                                 adapterEvents = EventsAdapter(lectureList)
+                                adapterEvents.onItemClick = {
+                                    showBottomSheet(it)
+                                }
                                 adapter = adapterEvents
                                 layoutManager =
                                     LinearLayoutManager(
@@ -297,6 +315,13 @@ class AfishaFragment : Fragment() {
         }
     }
 
+    private fun showBottomSheet(i: GetEventsResponse){
+        val bottomSheet = BottomSheetAfisha(i)
+        val fragmentManager = (activity as FragmentActivity).supportFragmentManager
+        fragmentManager.let {
+            bottomSheet.show(it, BottomSheetGround.TAG)
+        }
+    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

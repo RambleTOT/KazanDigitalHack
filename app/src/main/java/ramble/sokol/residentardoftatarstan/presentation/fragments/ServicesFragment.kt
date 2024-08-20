@@ -5,9 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import ramble.sokol.residentardoftatarstan.AfishaFragment
 import ramble.sokol.residentardoftatarstan.R
-import ramble.sokol.residentardoftatarstan.databinding.FragmentMapBinding
 import ramble.sokol.residentardoftatarstan.databinding.FragmentServicesBinding
 
 class ServicesFragment : Fragment() {

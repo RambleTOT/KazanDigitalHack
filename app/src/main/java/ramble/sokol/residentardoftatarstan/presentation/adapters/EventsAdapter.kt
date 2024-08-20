@@ -33,9 +33,9 @@ class EventsAdapter (
             val beginningDateTime = parseDateTime(currentItem.beginningAt.toString())
             dateAddressEvent.text = "${currentItem.address} · ${formatDateTime(beginningDateTime)}"
             priceEventText.text = if (currentItem.price == "0") "Бесплатно" else "от ${currentItem.price} ₽"
-//            holder.itemView.setOnClickListener{
-//                onItemClick?.invoke(currentItem)
-//            }
+            holder.itemView.setOnClickListener{
+                onItemClick?.invoke(currentItem)
+            }
         }
     }
 
