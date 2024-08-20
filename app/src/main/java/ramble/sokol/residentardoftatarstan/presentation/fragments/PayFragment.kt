@@ -2,10 +2,12 @@ package ramble.sokol.residentardoftatarstan.presentation.fragments
 
 import android.content.Context
 import android.os.Bundle
+import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import ramble.sokol.residentardoftatarstan.R
 import ramble.sokol.residentardoftatarstan.databinding.FragmentOnBoardingBinding
@@ -34,13 +36,18 @@ class PayFragment(
     }
 
     private fun init(){
-        binding!!.sumPay.text = price
+        binding!!.sumPay.text = "${price}₽"
         binding!!.payOnline.setOnClickListener {
-            val transaction = requireActivity().supportFragmentManager.beginTransaction()
-            val bottomNavigationFragment = BottomNavigationFragment(ServicesFragment())
-            transaction.replace(R.id.layout_fragment, bottomNavigationFragment)
-            transaction.disallowAddToBackStack()
-            transaction.commit()
+            binding!!.payOnline.visibility = View.INVISIBLE
+            binding!!.progressPay.visibility = View.VISIBLE
+            Handler().postDelayed(Runnable {
+                val transaction = requireActivity().supportFragmentManager.beginTransaction()
+                val bottomNavigationFragment = BottomNavigationFragment(ServicesFragment())
+                transaction.replace(R.id.layout_fragment, bottomNavigationFragment)
+                transaction.disallowAddToBackStack()
+                transaction.commit()
+                Toast.makeText(activity, "Оплата прошла успешно", Toast.LENGTH_SHORT).show()
+            }, 1500)
         }
     }
 
