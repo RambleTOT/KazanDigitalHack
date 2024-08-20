@@ -172,10 +172,10 @@
 
                 <TextView
                     android:id="@+id/text_card_1"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/mont_semibold"
-                    android:gravity="center"
+                    android:gravity="start"
                     android:lineSpacingExtra="5dp"
                     android:text="@string/map"
                     android:textColor="@color/text_questions"
@@ -196,10 +196,10 @@
 
                 <TextView
                     android:id="@+id/text_card_2"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/mont_semibold"
-                    android:gravity="center"
+                    android:gravity="start"
                     android:lineSpacingExtra="5dp"
                     android:text="@string/map"
                     android:textColor="@color/text_questions"
@@ -229,10 +229,10 @@
 
                 <TextView
                     android:id="@+id/text_card_3"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/mont_semibold"
-                    android:gravity="center"
+                    android:gravity="start"
                     android:lineSpacingExtra="5dp"
                     android:text="@string/map"
                     android:textColor="@color/text_questions"
@@ -253,10 +253,10 @@
 
                 <TextView
                     android:id="@+id/text_card_4"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/mont_semibold"
-                    android:gravity="center"
+                    android:gravity="start"
                     android:lineSpacingExtra="5dp"
                     android:text="@string/map"
                     android:textColor="@color/text_questions"

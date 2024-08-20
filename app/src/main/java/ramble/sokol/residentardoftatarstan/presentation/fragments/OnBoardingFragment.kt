@@ -13,7 +13,11 @@ class OnBoardingFragment : Fragment() {
     private var binding: FragmentOnBoardingBinding? = null
     private var currentQuestions = 1
     private var currentClick = 0
-    private val questions: Array<String> = arrayOf("Questions 1", "Questions 2", "Questions 3", "Questions 4", "Questions 5", "Questions 6", "Questions 7", "Questions 8", "Questions 9", "Questions 10")
+    private val questions: Array<String> = arrayOf("Относитесь ли вы к одной из следующих категорий?", "Занимаетесь ли вы спортом? ", "Ходите ли вы на городские мероприятия?", "Посещаете ли вы какие-то секции? ", "Есть ли у вас машина?", "Что вам наиболее интересно?", "Как часто вы пользуетесь общественным траснпортом?", "Какие виды транспорта вы используете чаще всего?", "Как часто вы путешествуете по другим городам Татарстана", "Какие факторы влияют на ваш выбор места для посещения?")
+    private val variant1: Array<String> = arrayOf("Пенсионер", "Часто заниамюсь спортом", "Да, часто хожу", "Да, посещаю", "Да, часто езжу", "Концерты", "Ежедневно", "Автобус", "Часто", "Цена")
+    private val variant2: Array<String> = arrayOf("Студент", "Редко, но занимаюсь", "Редко хожу", "Ребенок посещает", "Да, но езжу редко", "Концерты", "Несколько раз в неделю", "Метро", "Только во время отпуска", "Отзывы")
+    private val variant3: Array<String> = arrayOf("Инвалид", "Только смотрю эфиры", "Смотрю по телевизору", "Нет, но хочу", "Нет, но собираюсь купить", "Лекции и митапы", "Раз в месяц", "трамвай", "Очень редко", "Близость к дому")
+    private val variant4: Array<String> = arrayOf("Не отношусь", "Нет", "Вообще не хожу", "Не посещаю и не хочу", "Нет", "Спорт", "Не пользуюсь", "Не пользуюсь", "Никогда", "Популярность")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -128,6 +132,10 @@ class OnBoardingFragment : Fragment() {
         binding!!.textCard1.setTextColor(resources.getColor(R.color.text_questions, null))
         binding!!.textNumberQuestions.text = "${currentQuestions} из 10 вопросов"
         binding!!.questionsText.text = questions[currentQuestions-1]
+        binding!!.textCard1.text = variant1[currentQuestions-1]
+        binding!!.textCard2.text = variant2[currentQuestions-1]
+        binding!!.textCard3.text = variant3[currentQuestions-1]
+        binding!!.textCard4.text = variant4[currentQuestions-1]
         viewBack()
     }
 
