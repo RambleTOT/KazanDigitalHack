@@ -36,7 +36,7 @@ class LoginFragment : Fragment() {
 //                binding!!.editTextPassword.text.toString()
 //            )
             val transaction = requireActivity().supportFragmentManager.beginTransaction()
-            val bottomNavigationFragment = BottomNavigationFragment()
+            val bottomNavigationFragment = BottomNavigationFragment(MainFragment())
             transaction.replace(R.id.layout_fragment, bottomNavigationFragment)
             transaction.disallowAddToBackStack()
             transaction.commit()

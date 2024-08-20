@@ -9,7 +9,9 @@ import ramble.sokol.residentardoftatarstan.R
 import ramble.sokol.residentardoftatarstan.databinding.FragmentBottomNavigationBinding
 
 
-class BottomNavigationFragment : Fragment() {
+class BottomNavigationFragment(
+    val currentFragment: Fragment
+) : Fragment() {
 
     private var binding: FragmentBottomNavigationBinding? = null
 
@@ -26,7 +28,7 @@ class BottomNavigationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        replaceFragment(MainFragment())
+        replaceFragment(currentFragment)
         binding!!.bottomNavigationView.setOnItemSelectedListener {
             when (it.itemId){
                 R.id.navbar_main -> replaceFragment(MainFragment())

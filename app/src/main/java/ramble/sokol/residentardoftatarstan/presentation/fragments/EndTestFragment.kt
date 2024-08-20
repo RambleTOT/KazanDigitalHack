@@ -31,7 +31,7 @@ class EndTestFragment : Fragment() {
     private fun init(){
         binding!!.buttonToMainTest.setOnClickListener {
             val transaction = requireActivity().supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.layout_fragment, BottomNavigationFragment())
+            transaction.replace(R.id.layout_fragment, BottomNavigationFragment(MainFragment()))
             transaction.disallowAddToBackStack()
             transaction.commit()
         }

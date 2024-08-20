@@ -214,7 +214,7 @@ class MapFragment : Fragment() {
             OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 val transaction = requireActivity().supportFragmentManager.beginTransaction()
-                transaction.replace(R.id.layout_fragment, BottomNavigationFragment())
+                transaction.replace(R.id.layout_fragment, BottomNavigationFragment(ServicesFragment()))
                 transaction.disallowAddToBackStack()
                 transaction.commit()
             }

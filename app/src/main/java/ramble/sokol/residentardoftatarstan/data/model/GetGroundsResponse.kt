@@ -16,7 +16,11 @@ data class GetGroundsResponse(
     @SerializedName("longitude")
     val longitude: String?,
     @SerializedName("rating")
-    val rating: Int?,
+    val rating: String?,
     @SerializedName("timetable")
     val timetable: String?,
+    @SerializedName("price")
+    val price: String?,
+    @SerializedName("category")
+    val category: String?,
 )

@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:textSize="14sp"
             android:textColor="@color/color_text_description_pay"
-            android:text="@string/description"
+            android:text="Опалат услуг"
             android:fontFamily="@font/mont_regular"
             android:lineSpacingExtra="5dp"
             android:gravity="start"/>
