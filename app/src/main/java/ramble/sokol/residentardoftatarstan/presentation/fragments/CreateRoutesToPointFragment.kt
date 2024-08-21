@@ -10,15 +10,26 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import com.yandex.mapkit.RequestPoint
+import com.yandex.mapkit.RequestPointType
+import com.yandex.mapkit.directions.DirectionsFactory
+import com.yandex.mapkit.directions.driving.DrivingOptions
+import com.yandex.mapkit.directions.driving.DrivingRoute
+import com.yandex.mapkit.directions.driving.DrivingRouter
+import com.yandex.mapkit.directions.driving.DrivingSession
+import com.yandex.mapkit.directions.driving.VehicleOptions
 import com.yandex.mapkit.geometry.Point
 import com.yandex.mapkit.geometry.Polyline
 import com.yandex.mapkit.location.LocationManager
 import com.yandex.mapkit.map.CameraPosition
 import com.yandex.mapkit.map.MapObjectCollection
+import com.yandex.mapkit.transport.bicycle.Session
+import com.yandex.runtime.Error
 import ramble.sokol.residentardoftatarstan.R
 import ramble.sokol.residentardoftatarstan.databinding.FragmentCreateRoutesToPointBinding
 
@@ -33,6 +44,9 @@ class CreateRoutesToPointFragment(
     private lateinit var startLocation: Point
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private lateinit var listPoint: List<Point>
+    private var mapObjectCollection: MapObjectCollection? = null
+    private var drivingRouter: DrivingRouter? = null
+    private var drivingSession: DrivingSession? = null
 
 
     companion object {
@@ -57,6 +71,10 @@ class CreateRoutesToPointFragment(
 
     private fun init(){
         fusedLocationProviderClient= LocationServices.getFusedLocationProviderClient(requireActivity())
+        drivingRouter = DirectionsFactory.getInstance().createDrivingRouter()
+        mapObjectCollection = binding!!.mapView.map.mapObjects.addCollection()
+
+
     }
 
     private fun moveToStartLocation() {
@@ -64,17 +82,19 @@ class CreateRoutesToPointFragment(
         binding!!.mapView.map.move(
             CameraPosition(startLocation, zoomValue, 0.0f, 0.0f)
         )
-        drawRoute(startLocation, end)
+        submitRequest(startLocation, end)
+        //drawRoute(startLocation, end)
     }
 
-    private fun drawRoute(startPoint: Point, endPoint: Point) {
-        val mapObjects: MapObjectCollection = binding!!.mapView.map.mapObjects.addCollection()
-
-        // Создаем список точек для линии
-        val points = listOf(startPoint, endPoint)
-
-        // Добавляем полилинию на карту
-        mapObjects.addPolyline(Polyline(points))
+    private fun submitRequest(startPoint: Point, endPoint: Point){
+        val drivingOptions = DrivingOptions().apply {
+            routesCount = 1
+        }
+        val vehicleOptions = VehicleOptions()
+        val requestPoints: ArrayList<RequestPoint> = ArrayList()
+        requestPoints.add(RequestPoint(startPoint, RequestPointType.WAYPOINT, null))
+        requestPoints.add(RequestPoint(endPoint, RequestPointType.WAYPOINT, null))
+        drivingSession = drivingRouter!!.requestRoutes(requestPoints, drivingOptions, vehicleOptions, drivingRouteListener)
     }
 
     private fun getMyLocation(){
@@ -160,4 +180,19 @@ class CreateRoutesToPointFragment(
         requireActivity().onBackPressedDispatcher.addCallback(this, callback)
     }
 
+
+    val drivingRouteListener = object : DrivingSession.DrivingRouteListener {
+        override fun onDrivingRoutes(drivingRoutes: MutableList<DrivingRoute>) {
+            for (route in drivingRoutes){
+                val pol = mapObjectCollection!!.addPolyline(route.geometry)
+                pol.strokeColor = resources.getColor(R.color.color_main, null)
+                pol.strokeWidth = 7f
+            }
+        }
+
+        override fun onDrivingRoutesError(error: Error) {
+            var error = "Произошла ошибка, попробуйте еще раз"
+            Toast.makeText(activity, error, Toast.LENGTH_SHORT).show()
+        }
+    }
 }
