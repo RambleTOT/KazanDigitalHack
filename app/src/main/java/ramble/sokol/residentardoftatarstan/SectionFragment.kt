@@ -17,6 +17,7 @@ import ramble.sokol.residentardoftatarstan.databinding.FragmentAfishaBinding
 import ramble.sokol.residentardoftatarstan.databinding.FragmentSectionBinding
 import ramble.sokol.residentardoftatarstan.presentation.adapters.BottomSheetAfisha
 import ramble.sokol.residentardoftatarstan.presentation.adapters.BottomSheetGround
+import ramble.sokol.residentardoftatarstan.presentation.adapters.BottomSheetSection
 import ramble.sokol.residentardoftatarstan.presentation.adapters.EventsAdapter
 import ramble.sokol.residentardoftatarstan.presentation.adapters.SectionsAdapter
 import ramble.sokol.residentardoftatarstan.presentation.fragments.BottomNavigationFragment
@@ -69,7 +70,7 @@ class SectionFragment : Fragment() {
                     binding!!.recyclerViewRecommendSection.apply {
                         adapterSections = SectionsAdapter(sectionsList)
                         adapterSections.onItemClick = {
-                            //showBottomSheet(it)
+                            showBottomSheet(it)
                         }
                         adapter = adapterSections
                         layoutManager =
@@ -107,7 +108,7 @@ class SectionFragment : Fragment() {
                             binding!!.recyclerSportSection.apply {
                                 adapterSections = SectionsAdapter(sportList)
                                 adapterSections.onItemClick = {
-                                    //showBottomSheet(it)
+                                    showBottomSheet(it)
                                 }
                                 adapter = adapterSections
                                 layoutManager =
@@ -150,7 +151,7 @@ class SectionFragment : Fragment() {
                             binding!!.recyclerIntellectSection.apply {
                                 adapterSections = SectionsAdapter(intellectList)
                                 adapterSections.onItemClick = {
-                                    //showBottomSheet(it)
+                                    showBottomSheet(it)
                                 }
                                 adapter = adapterSections
                                 layoutManager =
@@ -193,7 +194,7 @@ class SectionFragment : Fragment() {
                             binding!!.recyclerTvoriSection.apply {
                                 adapterSections = SectionsAdapter(tvoriList)
                                 adapterSections.onItemClick = {
-                                    //showBottomSheet(it)
+                                    showBottomSheet(it)
                                 }
                                 adapter = adapterSections
                                 layoutManager =
@@ -236,7 +237,7 @@ class SectionFragment : Fragment() {
                             binding!!.recyclerAdaptiveSection.apply {
                                 adapterSections = SectionsAdapter(adaptiveList)
                                 adapterSections.onItemClick = {
-                                    //showBottomSheet(it)
+                                    showBottomSheet(it)
                                 }
                                 adapter = adapterSections
                                 layoutManager =
@@ -268,13 +269,13 @@ class SectionFragment : Fragment() {
         }
     }
 
-//    private fun showBottomSheet(i: GetSectionsResponse){
-//        val bottomSheet = BottomSheetAfisha(i)
-//        val fragmentManager = (activity as FragmentActivity).supportFragmentManager
-//        fragmentManager.let {
-//            bottomSheet.show(it, BottomSheetGround.TAG)
-//        }
-//    }
+    private fun showBottomSheet(i: GetSectionsResponse){
+        val bottomSheet = BottomSheetSection(i)
+        val fragmentManager = (activity as FragmentActivity).supportFragmentManager
+        fragmentManager.let {
+            bottomSheet.show(it, BottomSheetGround.TAG)
+        }
+    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

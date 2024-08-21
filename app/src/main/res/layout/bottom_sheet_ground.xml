@@ -150,7 +150,7 @@
                         android:fontFamily="@font/mont_bold"
                         android:gravity="center"
                         android:lineSpacingExtra="5dp"
-                        android:text="О мероприятии"
+                        android:text="Информация"
                         android:textColor="@color/black"
                         android:textSize="18sp" />
 

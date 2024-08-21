@@ -63,7 +63,7 @@
                             app:layout_constraintEnd_toEndOf="parent">
 
                             <TextView
-                                android:id="@+id/price_ground_text"
+                                android:id="@+id/price_section_text"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/mont_semibold"
@@ -91,7 +91,6 @@
                                 android:layout_marginEnd="4dp"/>
 
                             <TextView
-                                android:id="@+id/rating_ground_text"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/mont_semibold"
@@ -119,11 +118,11 @@
                     app:layout_constraintTop_toBottomOf="@+id/cardView">
 
                     <TextView
-                        android:id="@+id/name_ground"
+                        android:id="@+id/name_section"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/mont_bold"
-                        android:gravity="center"
+                        android:gravity="start"
                         android:lineSpacingExtra="5dp"
                         android:text="Сходка Артема Сокерина"
                         android:layout_gravity="start"
@@ -131,7 +130,7 @@
                         android:textSize="20sp" />
 
                     <TextView
-                        android:id="@+id/date_address_ground"
+                        android:id="@+id/date_address_section"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
@@ -150,12 +149,12 @@
                         android:fontFamily="@font/mont_bold"
                         android:gravity="center"
                         android:lineSpacingExtra="5dp"
-                        android:text="О мероприятии"
+                        android:text="О секции"
                         android:textColor="@color/black"
                         android:textSize="18sp" />
 
                     <TextView
-                        android:id="@+id/description_ground"
+                        android:id="@+id/description_section"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
@@ -166,24 +165,49 @@
                         android:textColor="@color/color_text_description_83"
                         android:textSize="16sp" />
 
-                    <Button
-                        android:id="@+id/button_create_routes"
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:backgroundTint="@color/white"
-                        android:fontFamily="@font/mont_semibold"
-                        android:includeFontPadding="false"
-                        android:lineSpacingExtra="4sp"
-                        android:paddingHorizontal="31dp"
-                        android:paddingVertical="25dp"
-                        android:text="@string/create_routes"
+                        android:layout_marginTop="36dp"
+                        android:fontFamily="@font/mont_bold"
+                        android:gravity="center"
+                        android:lineSpacingExtra="5dp"
+                        android:text="Тренировочные дни"
                         android:textColor="@color/black"
-                        android:textSize="16sp"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/days_section"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="@font/mont_semibold"
+                        android:gravity="start"
+                        android:lineSpacingExtra="5dp"
+                        android:text="Понедельник\nВторник\nСреда"
+                        android:textColor="@color/color_text_description_83"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="36dp"
+                        android:fontFamily="@font/mont_bold"
+                        android:gravity="center"
+                        android:lineSpacingExtra="5dp"
+                        android:text="Тренерский состав"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                    <ImageView
+                        android:layout_width="260dp"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
                         android:layout_marginTop="16dp"
-                        app:cornerRadius="50dp" />
+                        android:src="@drawable/image_coach"/>
 
                     <Button
-                        android:id="@+id/button_buy_or_ground"
+                        android:id="@+id/button_buy_section_child"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@color/color_main"
@@ -192,11 +216,28 @@
                         android:lineSpacingExtra="4sp"
                         android:paddingHorizontal="31dp"
                         android:paddingVertical="25dp"
-                        android:text="Купить"
+                        android:text="Записаться"
                         android:textColor="@color/white"
                         android:textSize="16sp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="20dp"
                         app:cornerRadius="50dp" />
+
+                    <Button
+                        android:id="@+id/button_buy_section"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/color_main"
+                        android:fontFamily="@font/mont_semibold"
+                        android:includeFontPadding="false"
+                        android:lineSpacingExtra="4sp"
+                        android:paddingHorizontal="31dp"
+                        android:paddingVertical="25dp"
+                        android:text="Записать ребенка"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:layout_marginTop="8dp"
+                        app:cornerRadius="50dp"
+                        android:layout_marginBottom="8dp"/>
 
                 </LinearLayout>
 
