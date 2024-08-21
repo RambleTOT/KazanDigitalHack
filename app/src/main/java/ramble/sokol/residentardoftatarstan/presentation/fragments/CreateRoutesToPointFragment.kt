@@ -3,6 +3,10 @@ package ramble.sokol.residentardoftatarstan.presentation.fragments
 import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
 import android.location.Location
 import android.os.Bundle
 import android.util.Log
@@ -13,6 +17,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.yandex.mapkit.RequestPoint
@@ -28,8 +33,10 @@ import com.yandex.mapkit.geometry.Polyline
 import com.yandex.mapkit.location.LocationManager
 import com.yandex.mapkit.map.CameraPosition
 import com.yandex.mapkit.map.MapObjectCollection
+import com.yandex.mapkit.map.PlacemarkMapObject
 import com.yandex.mapkit.transport.bicycle.Session
 import com.yandex.runtime.Error
+import com.yandex.runtime.image.ImageProvider
 import ramble.sokol.residentardoftatarstan.R
 import ramble.sokol.residentardoftatarstan.databinding.FragmentCreateRoutesToPointBinding
 
@@ -47,6 +54,7 @@ class CreateRoutesToPointFragment(
     private var mapObjectCollection: MapObjectCollection? = null
     private var drivingRouter: DrivingRouter? = null
     private var drivingSession: DrivingSession? = null
+    private var placemark: PlacemarkMapObject? = null
 
 
     companion object {
@@ -82,8 +90,25 @@ class CreateRoutesToPointFragment(
         binding!!.mapView.map.move(
             CameraPosition(startLocation, zoomValue, 0.0f, 0.0f)
         )
+        addPlacemark(startLocation)
+        val marker = createBitmapFromVector(R.drawable.icon_map)
+        mapObjectCollection!!.addPlacemark(end, ImageProvider.fromBitmap(marker))
+
         submitRequest(startLocation, end)
         //drawRoute(startLocation, end)
+    }
+
+    private fun createBitmapFromVector(art: Int): Bitmap? {
+        val drawable = ContextCompat.getDrawable(requireActivity(), art) ?: return null
+        val bitmap = Bitmap.createBitmap(
+            drawable.intrinsicWidth,
+            drawable.intrinsicHeight,
+            Bitmap.Config.ARGB_8888
+        ) ?: return null
+        val canvas = Canvas(bitmap)
+        drawable.setBounds(0, 0, canvas.width, canvas.height)
+        drawable.draw(canvas)
+        return bitmap
     }
 
     private fun submitRequest(startPoint: Point, endPoint: Point){
@@ -95,6 +120,19 @@ class CreateRoutesToPointFragment(
         requestPoints.add(RequestPoint(startPoint, RequestPointType.WAYPOINT, null))
         requestPoints.add(RequestPoint(endPoint, RequestPointType.WAYPOINT, null))
         drivingSession = drivingRouter!!.requestRoutes(requestPoints, drivingOptions, vehicleOptions, drivingRouteListener)
+    }
+
+    private fun addPlacemark(location: Point) {
+        // Загрузите изображение из ресурсов
+        val drawable: Drawable? = ContextCompat.getDrawable(requireActivity(), R.drawable.current_location)
+        val bitmap = (drawable as BitmapDrawable).bitmap
+
+        // Создайте placemark с пользовательским значком
+        if (placemark == null) {
+            placemark = binding!!.mapView.map.mapObjects.addPlacemark(location, ImageProvider.fromBitmap(bitmap))
+        } else {
+            placemark!!.geometry = location
+        }
     }
 
     private fun getMyLocation(){
