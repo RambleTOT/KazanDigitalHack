@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import ramble.sokol.residentardoftatarstan.R
+import ramble.sokol.residentardoftatarstan.SectionFragment
 import ramble.sokol.residentardoftatarstan.databinding.FragmentServicesBinding
 
 class ServicesFragment : Fragment() {
@@ -39,6 +40,13 @@ class ServicesFragment : Fragment() {
         binding!!.cardAfisha.setOnClickListener {
             val transaction = requireActivity().supportFragmentManager.beginTransaction()
             transaction.replace(R.id.layout_fragment, AfishaFragment())
+            transaction.disallowAddToBackStack()
+            transaction.commit()
+        }
+
+        binding!!.cardSection.setOnClickListener {
+            val transaction = requireActivity().supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.layout_fragment, SectionFragment())
             transaction.disallowAddToBackStack()
             transaction.commit()
         }

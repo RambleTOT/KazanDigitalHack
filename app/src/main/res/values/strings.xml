@@ -39,5 +39,9 @@
     <string name="concert">Концерты</string>
     <string name="lecture">Лекции</string>
     <string name="culture">Культура</string>
+    <string name="sport_section">Спортивные</string>
+    <string name="adaptive">Адаптивные</string>
+    <string name="intellect">Интеллектуальные</string>
+    <string name="tvori">Творческие</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
