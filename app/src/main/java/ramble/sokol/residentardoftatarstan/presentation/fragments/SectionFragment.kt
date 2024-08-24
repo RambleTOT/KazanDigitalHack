@@ -1,4 +1,4 @@
-package ramble.sokol.residentardoftatarstan
+package ramble.sokol.residentardoftatarstan.presentation.fragments
 
 import android.content.Context
 import android.os.Bundle
@@ -11,17 +11,12 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import ramble.sokol.residentardoftatarstan.data.model.GetEventsResponse
+import ramble.sokol.residentardoftatarstan.R
 import ramble.sokol.residentardoftatarstan.data.model.GetSectionsResponse
-import ramble.sokol.residentardoftatarstan.databinding.FragmentAfishaBinding
 import ramble.sokol.residentardoftatarstan.databinding.FragmentSectionBinding
-import ramble.sokol.residentardoftatarstan.presentation.adapters.BottomSheetAfisha
 import ramble.sokol.residentardoftatarstan.presentation.adapters.BottomSheetGround
 import ramble.sokol.residentardoftatarstan.presentation.adapters.BottomSheetSection
-import ramble.sokol.residentardoftatarstan.presentation.adapters.EventsAdapter
 import ramble.sokol.residentardoftatarstan.presentation.adapters.SectionsAdapter
-import ramble.sokol.residentardoftatarstan.presentation.fragments.BottomNavigationFragment
-import ramble.sokol.residentardoftatarstan.presentation.fragments.ServicesFragment
 import ramble.sokol.residentardoftatarstan.presentation.managers.RetrofitHelper
 import retrofit2.Call
 import retrofit2.Callback

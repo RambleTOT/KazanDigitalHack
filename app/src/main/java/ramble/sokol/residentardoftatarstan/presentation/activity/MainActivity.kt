@@ -14,6 +14,7 @@ import ramble.sokol.residentardoftatarstan.BuildConfig
 import ramble.sokol.residentardoftatarstan.R
 import ramble.sokol.residentardoftatarstan.presentation.fragments.MainFragment
 import ramble.sokol.residentardoftatarstan.presentation.fragments.SplashScreenFragment
+import ramble.sokol.residentardoftatarstan.presentation.fragments.StudentFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -57,7 +58,9 @@ class MainActivity : AppCompatActivity() {
         super.onNewIntent(intent)
         intent?.let {
             val fragment = supportFragmentManager.findFragmentById(R.id.layout_fragment) as? MainFragment
+            val fragment2 = supportFragmentManager.findFragmentById(R.id.layout_fragment) as? StudentFragment
             fragment?.handleNfcIntent(it)
+            fragment2?.handleNfcIntent(it)
         }
     }
 
