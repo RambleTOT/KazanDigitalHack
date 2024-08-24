@@ -40,12 +40,13 @@
             android:layout_height="wrap_content"
             android:background="@drawable/services_background"
             android:orientation="horizontal"
-            android:padding="12dp">
+            android:padding="24dp">
 
             <ImageView
-                android:layout_width="80dp"
-                android:layout_height="71dp"
-                android:src="@drawable/image_splash_screen"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/icon_afisha"
+                android:layout_marginStart="4dp"
                 android:adjustViewBounds="true"/>
 
             <LinearLayout
@@ -101,7 +102,7 @@
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/image_splash_screen"
+                    android:src="@drawable/icon_section"
                     android:adjustViewBounds="true"/>
 
                 <TextView
@@ -141,7 +142,7 @@
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/image_splash_screen"
+                    android:src="@drawable/icon_map2"
                     android:adjustViewBounds="true"/>
 
                 <TextView
@@ -176,12 +177,13 @@
             android:background="@drawable/services_background"
             android:orientation="horizontal"
             android:layout_marginTop="16dp"
-            android:padding="12dp">
+            android:padding="24dp">
 
             <ImageView
-                android:layout_width="80dp"
-                android:layout_height="71dp"
-                android:src="@drawable/image_splash_screen"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/icon_routes"
+                android:layout_marginStart="4dp"
                 android:adjustViewBounds="true"/>
 
             <LinearLayout
@@ -209,6 +211,95 @@
                     android:layout_marginTop="4dp"
                     android:textColor="@color/color_text_description_83"
                     android:text="@string/routes_description"
+                    android:fontFamily="@font/mont_regular"
+                    android:lineSpacingExtra="5dp"
+                    android:gravity="start"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp"
+            android:weightSum="2">
+
+            <LinearLayout
+                android:id="@+id/card_student"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginEnd="9dp"
+                android:padding="24dp"
+                android:background="@drawable/services_background">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/icon_personaly"
+                    android:adjustViewBounds="true"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"
+                    android:text="@string/for_student"
+                    android:fontFamily="@font/mont_semibold"
+                    android:lineSpacingExtra="5dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="start"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@color/color_text_description_83"
+                    android:text="@string/special_description"
+                    android:fontFamily="@font/mont_regular"
+                    android:lineSpacingExtra="5dp"
+                    android:gravity="start"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/card_ovz"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginStart="9dp"
+                android:padding="24dp"
+                android:background="@drawable/services_background">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/icon_personaly"
+                    android:adjustViewBounds="true"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"
+                    android:text="@string/for_ovz"
+                    android:fontFamily="@font/mont_semibold"
+                    android:lineSpacingExtra="5dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="start"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@color/color_text_description_83"
+                    android:text="@string/special_description"
                     android:fontFamily="@font/mont_regular"
                     android:lineSpacingExtra="5dp"
                     android:gravity="start"/>
