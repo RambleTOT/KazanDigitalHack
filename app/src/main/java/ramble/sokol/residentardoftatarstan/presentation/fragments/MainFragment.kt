@@ -38,6 +38,12 @@ class MainFragment : Fragment() {
             transaction.disallowAddToBackStack()
             transaction.commit()
         }
+        binding!!.createFamily.setOnClickListener{
+            val transaction = requireActivity().supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.layout_fragment, InviteFragment())
+            transaction.disallowAddToBackStack()
+            transaction.commit()
+        }
     }
 
     fun handleNfcIntent(intent: Intent) {

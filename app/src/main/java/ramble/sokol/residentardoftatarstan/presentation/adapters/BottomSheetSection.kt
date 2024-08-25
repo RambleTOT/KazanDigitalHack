@@ -1,10 +1,12 @@
 package ramble.sokol.residentardoftatarstan.presentation.adapters
 
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.squareup.picasso.Picasso
 import com.yandex.mapkit.geometry.Point
@@ -14,8 +16,10 @@ import ramble.sokol.residentardoftatarstan.data.model.GetGroundsResponse
 import ramble.sokol.residentardoftatarstan.data.model.GetSectionsResponse
 import ramble.sokol.residentardoftatarstan.databinding.BottomSheetGroundBinding
 import ramble.sokol.residentardoftatarstan.databinding.BottomSheetSectionBinding
+import ramble.sokol.residentardoftatarstan.presentation.fragments.BottomNavigationFragment
 import ramble.sokol.residentardoftatarstan.presentation.fragments.MapFragment
 import ramble.sokol.residentardoftatarstan.presentation.fragments.PayFragment
+import ramble.sokol.residentardoftatarstan.presentation.fragments.ServicesFragment
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -48,6 +52,20 @@ class BottomSheetSection(val i: GetSectionsResponse) : BottomSheetDialogFragment
             binding!!.imageSection.setBackgroundResource(R.drawable.image_card)
         }else {
             Picasso.with(context).load(i.image).into(binding!!.imageSection)
+        }
+        binding!!.buttonBuySection.setOnClickListener {
+            binding!!.buttonBuySection.visibility = View.GONE
+            binding!!.buttonBuySectionChild.visibility = View.GONE
+            Handler().postDelayed(Runnable {
+                Toast.makeText(activity, "Запрос на запись отправлен", Toast.LENGTH_SHORT).show()
+            }, 1500)
+        }
+        binding!!.buttonBuySectionChild.setOnClickListener {
+            binding!!.buttonBuySection.visibility = View.GONE
+            binding!!.buttonBuySectionChild.visibility = View.GONE
+            Handler().postDelayed(Runnable {
+                Toast.makeText(activity, "Запрос на запись отправлен", Toast.LENGTH_SHORT).show()
+            }, 1500)
         }
 
     }

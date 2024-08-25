@@ -56,6 +56,13 @@ class ServicesFragment : Fragment() {
             transaction.disallowAddToBackStack()
             transaction.commit()
         }
+
+        binding!!.cardOvz.setOnClickListener {
+            val transaction = requireActivity().supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.layout_fragment, OvzFragment())
+            transaction.disallowAddToBackStack()
+            transaction.commit()
+        }
     }
 
 }
