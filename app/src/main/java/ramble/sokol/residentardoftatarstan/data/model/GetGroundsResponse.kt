@@ -23,4 +23,7 @@ data class GetGroundsResponse(
     val price: String?,
     @SerializedName("category")
     val category: String?,
+    @SerializedName("image")
+    val image: String?,
+
 )

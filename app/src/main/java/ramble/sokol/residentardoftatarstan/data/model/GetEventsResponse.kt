@@ -19,4 +19,6 @@ data class GetEventsResponse(
     val price: String?,
     @SerializedName("category")
     val category: String?,
+    @SerializedName("image")
+    val image: String?,
 )

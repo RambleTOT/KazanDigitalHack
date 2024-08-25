@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.squareup.picasso.Picasso
 import com.yandex.mapkit.geometry.Point
 import ramble.sokol.residentardoftatarstan.presentation.fragments.CreateRoutesToPointFragment
 import ramble.sokol.residentardoftatarstan.R
@@ -43,6 +44,11 @@ class BottomSheetSection(val i: GetSectionsResponse) : BottomSheetDialogFragment
         val beginningDateTime = parseDateTime(i.beginningAt.toString())
         binding!!.dateAddressSection.text = "${i.address} · ${formatDateTime(beginningDateTime)}"
         binding!!.daysSection.text = convertDays(i.days.toString())
+        if (binding!!.imageSection == null){
+            binding!!.imageSection.setBackgroundResource(R.drawable.image_card)
+        }else {
+            Picasso.with(context).load(i.image).into(binding!!.imageSection)
+        }
 
     }
 

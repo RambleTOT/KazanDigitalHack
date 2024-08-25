@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.squareup.picasso.Picasso
 import com.yandex.mapkit.geometry.Point
 import ramble.sokol.residentardoftatarstan.presentation.fragments.CreateRoutesToPointFragment
 import ramble.sokol.residentardoftatarstan.R
@@ -44,6 +45,11 @@ class BottomSheetAfisha(val i: GetEventsResponse) : BottomSheetDialogFragment() 
         binding!!.dateAddressEvent.text = "${i.address} · ${formatDateTime(beginningDateTime)}"
         binding!!.priceEventText.text = if (i.price == "0") "Бесплатно" else "от ${i.price} ₽"
         if (i.price == "0") binding!!.buttonBuyOrGround.visibility =  View.GONE
+        if (binding!!.imageEvent == null){
+            binding!!.imageEvent.setBackgroundResource(R.drawable.image_card)
+        }else {
+            Picasso.with(context).load(i.image).into(binding!!.imageEvent)
+        }
         binding!!.buttonBuyOrGround.setOnClickListener {
             onStop()
             val transaction = requireActivity().supportFragmentManager.beginTransaction()
